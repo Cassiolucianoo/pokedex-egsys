@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Pokedex Egsys</string>
+
+
+    <string name="recycler_pokemon_title">Charmander</string>
+    <string name="recycler_pokemon_titlenamber">#123</string>
+    <string name="pokemon_image_desc">pokemon image</string>
+    <string name="reorder_desc">reorder icon</string>
+
+
 </resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="@color/surface_0">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pokemon_card"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/surface_1"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reorder_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pokemon_image"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:contentDescription="@string/pokemon_image_desc"
+                android:src="@drawable/charmander"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pokemon_title" />
+
+            <TextView
+                android:id="@+id/pokemon_title"
+                android:layout_width="203dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/recycler_pokemon_title"
+                android:textAlignment="center"
+                android:textAppearance="@style/Headline2DarkLeft"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pokemon_code"
+                android:layout_width="74dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/recycler_pokemon_titlenamber"
+
+                android:textAppearance="@style/Headline3ColdGrayLeft"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/reorder_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pokemon_card"
+
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/reorder_desc"
+        android:visibility="gone"
+        android:padding="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
