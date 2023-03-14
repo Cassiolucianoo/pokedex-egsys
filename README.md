@@ -23,8 +23,23 @@ aleatória
 
 
 ● Views
-    - Splash screen
-      - Home
-        - Detalhes
-❌ 
-✅    
+    ✅ - Splash screen
+    ✅ - Home. > detalhes
+    ❌ - Detalhes
+
+● Activits
+    ✅ - Splash screen
+    ❌ - Home. > detalhes
+    ❌               > listar os Pokémons.
+    ❌                          > apresentar Pokémon de forma aleatória.
+    ❌                                   > pisquisar por nome
+    ❌                                           > Filtrar por tipo 
+    ❌   - Detalhes
+
+● Models
+    ❌   ?
+
+● Services
+    ❌   ?
+
+ 
