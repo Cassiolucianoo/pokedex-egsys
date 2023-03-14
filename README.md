@@ -22,6 +22,13 @@ aleatória
 ○ API que deve ser usada como base é a API fornecida pelo https://pokeapi.co 
 
 
+
+
+
+
+
+
+
 ● Views
     ✅ - Splash screen
     ✅ - Home. > detalhes
