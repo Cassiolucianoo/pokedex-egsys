@@ -1,6 +1,7 @@
 package com.cassioluciano.pokedexegsys
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -9,38 +10,9 @@ import android.view.WindowManager
 
 
 
-import android.graphics.ImageDecoder
-import android.graphics.drawable.AnimatedImageDrawable
-
-
-import android.widget.ImageView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.coroutineContext
-
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_main)
-
-        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
-            val source = ImageDecoder.createSource(
-                resources, R.drawable.pokeball
-            )
-            val drawable = ImageDecoder.decodeDrawable(source)
-
-            val imageView = findViewById<ImageView>(R.id.image_view)
-            imageView.post {
-                imageView.setImageDrawable(drawable)
-                (drawable as? AnimatedImageDrawable)?.start()
-
-            }
-        }
-
 
         //hiding title bar of this activity
         window.requestFeature(Window.FEATURE_NO_TITLE)
@@ -54,6 +26,6 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             //finish this activity
             finish()
-        },5000)
+        },8000)
     }
 }
