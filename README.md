@@ -31,7 +31,7 @@ aleatória
 ● Activits
 -    ✅ - Splash screen
 -    ✅  - Home. > ❌ detalhes
--    ✅               > listar os Pokémons. ❌  ( faltando IMG )
+-    ✅               > listar os Pokémons. ✅  ( faltando IMG )
 -    ❌                          > apresentar Pokémon de forma aleatória.
 -    ❌                                   > pisquisar por nome
 -    ❌                                           > Filtrar por tipo 
@@ -44,4 +44,5 @@ aleatória
 ● Services
 -    ✅  - getPokemonsList
 
- 
+● Design patterns
+-    ✅  - mvvm
