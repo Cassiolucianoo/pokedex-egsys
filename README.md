@@ -1,6 +1,7 @@
 # pokedex-egsys
 Aplicativo mobile Android Nativo Pokédex
 
+
 ## Requisitos
 - O Aplicativo precisa ter uma tela de apresentação, uma home e uma tela de detalhes.
 - ● Tela de apresentação e Home
