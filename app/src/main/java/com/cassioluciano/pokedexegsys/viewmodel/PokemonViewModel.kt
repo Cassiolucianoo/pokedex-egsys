@@ -9,10 +9,12 @@ import com.cassioluciano.pokedexegsys.domain.Pokemon
 
 import kotlinx.coroutines.launch
 
-
 class PokemonViewModel : ViewModel() {
     private val _pokemons = MutableLiveData<List<Pokemon?>>()
     val pokemons: LiveData<List<Pokemon?>> get() = _pokemons
+
+    private var loadedItemCount = 0
+    private val loadBatchSize = 8
 
     init {
         viewModelScope.launch {
@@ -20,72 +22,38 @@ class PokemonViewModel : ViewModel() {
         }
     }
 
-    private suspend fun loadPokemons() {
-        val pokemonsApiResult = PokemonRepository.listPokemons()
+    suspend fun loadMorePokemons() {
+        val pokemonsApiResult = PokemonRepository.listPokemons(loadBatchSize, loadedItemCount)
 
         pokemonsApiResult?.results?.let {
-            _pokemons.postValue(
-                it.map { pokemonResult ->
-                    val number = pokemonResult.url
-                        .replace("https://pokeapi.co/api/v2/pokemon/", "")
-                        .replace("/", "").toInt()
+            val newPokemons = it.map { pokemonResult ->
+                val number = pokemonResult.url
+                    .replace("https://pokeapi.co/api/v2/pokemon/", "")
+                    .replace("/", "").toInt()
 
-                    val pokemonApiResult = PokemonRepository.getPokemon(number)
+                val pokemonApiResult = PokemonRepository.getPokemon(number)
 
-                    pokemonApiResult?.let {
-                        Pokemon(
-                            pokemonApiResult.id,
-                            pokemonApiResult.name,
-                            pokemonApiResult.types.map { type ->
-                                type.type
-                            }
-                        )
-                    }
+                pokemonApiResult?.let {
+                    Pokemon(
+                        pokemonApiResult.id,
+                        pokemonApiResult.name,
+                        pokemonApiResult.types.map { type ->
+                            type.type
+                        }
+                    )
                 }
-            )
+            }
+
+            val currentPokemons = _pokemons.value.orEmpty().toMutableList()
+            currentPokemons.addAll(newPokemons)
+            _pokemons.postValue(currentPokemons)
+
+            loadedItemCount += loadBatchSize
         }
     }
+
+    private  suspend fun loadPokemons() {
+        val pokemonsApiResult = PokemonRepository.listPokemons(loadBatchSize, loadedItemCount)
+        loadMorePokemons()
+    }
 }
-
-
-
-
-
-
-//class PokemonViewModel : ViewModel() {
-//    var pokemons = MutableLiveData<List<Pokemon?>>()
-//
-//    init {
-//        Thread(
-//            Runnable {
-//                loadPokemons()
-//            }
-//        ).start()
-//    }
-//
-//    private fun loadPokemons() {
-//        val pokemonsApiResult = PokemonRepository.listPokemons()
-//
-//        pokemonsApiResult?.results?.let {
-//            pokemons.postValue(
-//                it.map { pokemonResult ->
-//                    val number = pokemonResult.url
-//                        .replace("https://pokeapi.co/api/v2/pokemon/", "")
-//                        .replace("/", "").toInt()
-//
-//                    val pokemonApiResult = PokemonRepository.getPokemon(number)
-//
-//                    pokemonApiResult?.let {
-//                        Pokemon(
-//                            pokemonApiResult.id,
-//                            pokemonApiResult.name,
-//                            pokemonApiResult.types.map { type ->
-//                                type.type
-//                            }
-//                        )
-//                    }
-//                }
-//            )
-//        }
-//    }
-//}
